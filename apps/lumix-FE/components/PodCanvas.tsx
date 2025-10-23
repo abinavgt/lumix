@@ -4,10 +4,12 @@ import { Maximize2, Minimize2, PresentationIcon, TvMinimalPlayIcon } from "lucid
 import { Switch } from "./ui/switch"
 import { Button } from "./ui/button"
 import { useState } from "react"
-import { PodCreateCanvas } from "./PodCreateCanvasmsg"
+import { PodCreateCanvasmsg } from "./PodCreateCanvasmsg"
+import { CanvasBoard } from "./CanvasBoard"
 
 export const PodCanvas = ()=>{
     const [isCanvasFullscreen, setIsCanvasFullscreen] = useState(false);
+    const [isCanvasCreated, setIsCanvasCreated] = useState(false);
     return <div className="h-full w-full relative">
         <div className="absolute inset-4 bg-card/10 border border-border rounded-lg shadow-sm overflow-hidden">
            <div className="flex items-center justify-between p-3 border-b border-border bg-muted/50">
@@ -20,7 +22,9 @@ export const PodCanvas = ()=>{
                   {isCanvasFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
                 </Button>
             </div> 
-            <PodCreateCanvas/>
+            {
+                isCanvasCreated ? <PodCreateCanvasmsg createCanvas={setIsCanvasCreated}/> : <CanvasBoard/>
+            }
         </div>
     </div>
 }

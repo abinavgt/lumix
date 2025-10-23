@@ -2,9 +2,9 @@
 
 import { MessageSquare, Calendar, FolderOpen, X } from "lucide-react";
 import { PodSidebarChat } from "./PodSidebarChat";
-import { Separator } from "./ui/separator";
+import { Separator } from "../ui/separator";
 import { useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { PodSidebarSchedule } from "./PodSidebarSchedule";
 import { PodSidebarFiles } from "./PodSidebarFiles";
 
@@ -24,14 +24,14 @@ export const PodSideBar = ({ isOpen, onToggle }: PodSideBarProps) => {
                             <div className="flex items-center gap-2 justify-between w-full">
                                 <Button
                                     variant="ghost"
-                                    size="sm" 
-                                    className={`flex flex-1 gap-1 items-center justify-center p-2 ${ activeTab=="chat" ? "bg-blue-400" : ""} rounded-md hover:bg-green-400/50 dark:hover:bg-green-400/50 cursor-pointer`}
+                                    size="sm"
+                                    className={`flex flex-1 gap-1 items-center justify-center p-2 ${activeTab == "chat" ? "bg-blue-400" : ""} rounded-md hover:bg-green-400/50 dark:hover:bg-green-400/50 cursor-pointer`}
                                     onClick={() => setActiveTab("chat")}>
                                     <MessageSquare className="h-5 w-5" />
                                     <span>Chat</span>
                                 </Button>
                                 <Button
-                                    className={`flex flex-1 gap-1 items-center justify-center p-2 rounded-md ${ activeTab=="schedule" ? "bg-blue-400" : ""} hover:bg-green-400/50 dark:hover:bg-green-400/50 cursor-pointer`}
+                                    className={`flex flex-1 gap-1 items-center justify-center p-2 rounded-md ${activeTab == "schedule" ? "bg-blue-400" : ""} hover:bg-green-400/50 dark:hover:bg-green-400/50 cursor-pointer`}
                                     size="sm"
                                     variant="ghost"
                                     onClick={() => setActiveTab("schedule")}>
@@ -39,19 +39,19 @@ export const PodSideBar = ({ isOpen, onToggle }: PodSideBarProps) => {
                                     <span>Schedule</span>
                                 </Button>
                                 <Button
-                                    className={`flex flex-1 gap-1 items-center justify-center p-2 rounded-md ${ activeTab=="files" ? "bg-blue-400" : ""} hover:bg-green-400/50 dark:hover:bg-green-400/50 cursor-pointer`}
+                                    className={`flex flex-1 gap-1 items-center justify-center p-2 rounded-md ${activeTab == "files" ? "bg-blue-400" : ""} hover:bg-green-400/50 dark:hover:bg-green-400/50 cursor-pointer`}
                                     size="sm"
                                     variant="ghost"
                                     onClick={() => setActiveTab("files")}>
                                     <FolderOpen className="h-5 w-5" />
                                     <span>Files</span>
                                 </Button>
-                                <Button 
-                                variant="ghost" 
-                                size="sm" 
-                                className="flex flex-1 items-center justify-center rounded-md hover:bg-red-500/80 dark:hover:bg-red-500/80 p-1 cursor-pointer"
-                                onClick={onToggle}>
-                                    <X/>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="flex flex-1 items-center justify-center rounded-md hover:bg-red-500/80 dark:hover:bg-red-500/80 p-1 cursor-pointer"
+                                    onClick={onToggle}>
+                                    <X />
                                 </Button>
                             </div>
                             <Separator orientation="horizontal" className="my-2" />
@@ -62,11 +62,11 @@ export const PodSideBar = ({ isOpen, onToggle }: PodSideBarProps) => {
                             }
                             {
                                 activeTab == "schedule" &&
-                                <PodSidebarSchedule/>
+                                <PodSidebarSchedule />
                             }
                             {
                                 activeTab == "files" &&
-                                <PodSidebarFiles/>
+                                <PodSidebarFiles />
                             }
                         </div>
                     </div>

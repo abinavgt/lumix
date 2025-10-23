@@ -4,11 +4,11 @@ import { useState } from "react"; //function component type
 import { useParams } from 'next/navigation';
 import { PodBreadCrumb } from "@/components/PodBreadCrumb";
 import { Button } from "@/components/ui/button";
-import { Camera, CameraOff, Mic, MicOff, Settings, Share2, Video, VideoOff } from "lucide-react";
+import { Mic, MicOff, Settings, Share2, Video, VideoOff } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { PodDescription } from "@/components/PodDescription";
 import { PodCanvas } from "@/components/PodCanvas";
-import { PodSideBar } from "@/components/PodSidebar";
+import { PodSideBar } from "@/components/podsidebar/PodSidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const PodPage = () => {

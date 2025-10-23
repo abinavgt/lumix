@@ -1,7 +1,7 @@
 import { Download, FileText, Upload } from "lucide-react"
-import { Button } from "./ui/button"
-import { ScrollArea } from "./ui/scroll-area"
-import { Card } from "./ui/card"
+import { Button } from "../ui/button"
+import { ScrollArea } from "../ui/scroll-area"
+import { Card } from "../ui/card"
 import { useState } from "react"
 
 export const PodSidebarFiles = () => {

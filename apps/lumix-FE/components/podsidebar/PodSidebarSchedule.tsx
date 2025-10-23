@@ -1,6 +1,6 @@
 import { ScrollArea } from "@radix-ui/react-scroll-area"
-import { Card } from "./ui/card"
-import { Button } from "./ui/button"
+import { Card } from "../ui/card"
+import { Button } from "../ui/button"
 import { Plus } from "lucide-react"
 
 export const PodSidebarSchedule = () => {

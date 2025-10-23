@@ -1,9 +1,9 @@
 import { AvatarFallback } from "@radix-ui/react-avatar"
-import { Avatar, AvatarImage } from "./ui/avatar"
-import { ScrollArea } from "./ui/scroll-area"
-import { Input } from "./ui/input"
+import { Avatar, AvatarImage } from "../ui/avatar"
+import { ScrollArea } from "../ui/scroll-area"
+import { Input } from "../ui/input"
 import { useState } from "react"
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 import { Send } from "lucide-react"
 
 export const PodSidebarChat = () => {
