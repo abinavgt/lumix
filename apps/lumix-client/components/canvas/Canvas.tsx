@@ -36,11 +36,11 @@ export function Canvas() {
   const layerRef = useRef<Konva.Layer>(null);
   const textInputRef = useRef<HTMLTextAreaElement>(null);
   const [textPosition, setTextPosition] = useState({ x: 0, y: 0 });
-  // const transformerRef = useRef(null);
   const currentShapeRef = useRef<RoughShape>(null);
   const startPosRef = useRef({ x: 0, y: 0 });
   const [isEditingText, setIsEditingText] = useState(false);
   const isTextReadyRef = useRef(false);
+  const [fontSize, setFontSize] = useState(17);
 
   useEffect(() => {
     if (isEditingText && textInputRef.current) {
@@ -166,15 +166,21 @@ export function Canvas() {
         });
         break;
 
-      case ToolType.TEXT:
+      case ToolType.TEXT: {// put braces coz initilazing a variable inside case has the same scope as switch put 
+        // braces to avoid potential naming conflicts.
         console.log('Creating text at position:', pos);
+
+        const adjustedY = pos.y - 40;// there is a difference between the textarea and konva text rendering baseline 
+        // Textarea: Text starts from the top of the element (with some internal padding)
+        // Konva.Text: By default, text is positioned by its baseline (the line where letters sit), not the top
+        // this -40 is hardcoded and trial and error by me i don't think this is a proper solution but it works. 
 
         shape = new RoughText({
           id,
           x: pos.x,
-          y: pos.y,
+          y: adjustedY,
           text: '',
-          fontSize: 20,
+          fontSize: fontSize,
           fontFamily: 'Virgil, sans-serif',
           fill: strokeColor,
         });
@@ -186,6 +192,7 @@ export function Canvas() {
 
         console.log('Text shape created, editing mode activated');
         break;
+      }
       default:
         return;
     }
@@ -277,9 +284,9 @@ export function Canvas() {
     console.log('Current shape:', currentShapeRef.current);
 
     if (!isTextReadyRef.current) {
-    console.log('Text input not ready yet, ignoring blur');
-    return;
-  }
+      console.log('Text input not ready yet, ignoring blur');
+      return;
+    }
 
     if (!currentShapeRef.current) {
       console.log('No current shape, closing text editor');
@@ -332,24 +339,30 @@ export function Canvas() {
         <textarea
           ref={textInputRef}
           autoFocus
-          placeholder="Type text here..."
+          placeholder=""
           style={{
             position: 'absolute',
             left: `${textPosition.x}px`,
             top: `${textPosition.y}px`,
-            fontSize: '20px',
+            fontSize: `${fontSize}px`,
             fontFamily: 'Virgil, sans-serif',
-            border: '2px solid #4F46E5',
-            borderRadius: '4px',
-            padding: '8px',
-            background: 'white',
-            minWidth: '200px',
-            minHeight: '20px',
-            resize: 'both',
+            border: 'none',
+            padding: '0',
+            margin: '0',
+            background: 'none',
             outline: 'none',
+            resize: 'none',
+            overflow: 'hidden', // no scrollbars
+            whiteSpace: 'pre', // keep text formatting
             zIndex: 1000,
             color: strokeColor,
-            lineHeight: '1.4',
+            lineHeight: 1.5,
+            width: 'auto',
+            height: 'auto',
+            transformOrigin: 'left top' // Ensures scaling/positioning happens from the top-left corner like the canvas coordinate system 
+            // Canvas coordinates start at (0,0) = top-left.
+            // DOM transforms by default start at center.
+            // This line makes both behave the same — so your overlay textarea doesn’t drift or misalign when scaling/zooming.
           }}
           onMouseDown={(e) => {
             // Prevent event from bubbling to Stage it will steal focus from textarea.
@@ -366,7 +379,7 @@ export function Canvas() {
           onKeyDown={(e) => {
             e.stopPropagation();
             if (e.key === 'Enter' && !e.shiftKey) {
-              e.preventDefault();
+              e.preventDefault(); // don't do any default behavior like new line or anything.
               console.log('Enter pressed');
               handleTextSubmit(e.currentTarget.value);
             }

@@ -24,6 +24,8 @@ export class RoughText extends Konva.Text {
       fill: config.fill || '#000000',
       // Make text look more hand-drawn
       shadowblur: 2,
+      lineHeight: 1.5,
+      verticalAlign: 'top',
       shadowoffset: { x: 0, y: 0 },
       visible: false
     });

@@ -8,7 +8,7 @@ export const CANVAS_CONFIG = {
 };
 
 export const DEFAULT_SHAPE_CONFIG = {
-  stroke: 'text-foreground',
+  stroke: '#FFFFFF',
   strokeWidth: 2,
   roughness: 1,
 };
