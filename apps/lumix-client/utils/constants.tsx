@@ -32,3 +32,8 @@ export const TOOLS = [
   { type: 'text', icon: <LetterTextIcon size={20} />, label: 'Text' },
   { type: 'eraser', icon: <Eraser size={20} />, label: 'Eraser' },
 ];
+
+export const ERASER_CONFIG = {
+  cursorSize: 5,      // Visual size of eraser cursor
+  hitRadius: 10,       // Detection radius (smaller = more precise)
+};
